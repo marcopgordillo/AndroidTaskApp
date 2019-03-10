@@ -6,4 +6,8 @@
     <string name="already_have_account">Already have account? Log in here</string>
     <string name="log_in_text">Log In</string>
     <string name="registration_text">Registration</string>
+    <string name="title_custom_input_field">Title:</string>
+    <string name="note_custom_input_field">Note:</string>
+    <string name="save">SAVE</string>
+    <string name="add_your_task">Add your daily task</string>
 </resources>
