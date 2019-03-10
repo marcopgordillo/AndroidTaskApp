@@ -10,11 +10,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.yourtaskapp.model.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 public class HomeActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private FloatingActionButton fabBtn;
+
+    // Firebase
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +42,14 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Your Task App");
 
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser mUser = mAuth.getCurrentUser();
+
+        String userId = mUser != null ? mUser.getUid() : null;
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("TaskNote").child(userId);
+
         fabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +61,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 myDialog.setView(myView);
 
-                AlertDialog dialog = myDialog.create();
+                final AlertDialog dialog = myDialog.create();
 
                 final EditText title = myView.findViewById(R.id.edt_title);
                 final EditText note = myView.findViewById(R.id.edt_note);
@@ -59,6 +82,18 @@ public class HomeActivity extends AppCompatActivity {
                             note.setError("Required field...");
                             return;
                         }
+
+                        String id = mDatabase.push().getKey();
+                        String date = DateFormat.getDateInstance().format(new Date());
+                        Task newTask = new Task(id, mTitle, mNote, date);
+
+                        if (id != null) {
+                            mDatabase.child(id).setValue(newTask);
+                        }
+
+                        Toast.makeText(getApplicationContext(), "Task insert", Toast.LENGTH_SHORT).show();
+
+                        dialog.dismiss();
                     }
                 });
 
