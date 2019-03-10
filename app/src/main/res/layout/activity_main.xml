@@ -8,60 +8,78 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/log_in_text"
-        android:textColor="@android:color/white"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:layout_gravity="center"
-        android:gravity="center"
-        />
-    
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="@string/email"
-        android:background="@drawable/edtdesign"
-        android:padding="10dp"
-        android:textColorHint="@android:color/white"
-        android:id="@+id/email_login"
-        />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/log_in_text"
+                android:textColor="@android:color/white"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="@string/password"
-        android:background="@drawable/edtdesign"
-        android:padding="10dp"
-        android:textColorHint="@android:color/white"
-        android:inputType="textPassword"
-        android:id="@+id/password_login"
-        />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="@string/email"
+                android:background="@drawable/edtdesign"
+                android:padding="10dp"
+                android:textColorHint="@android:color/white"
+                android:id="@+id/email_login"
+                />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/log_in_text"
-        android:background="@drawable/edtdesign"
-        android:textColor="@android:color/white"
-        android:id="@+id/login_btn"
-        android:textAppearance="?android:textAppearanceMedium"
-        />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="@string/password"
+                android:background="@drawable/edtdesign"
+                android:padding="10dp"
+                android:textColorHint="@android:color/white"
+                android:inputType="textPassword"
+                android:id="@+id/password_login"
+                />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/don_t_have_account"
-        android:textColor="@android:color/white"
-        android:gravity="center"
-        android:padding="7dp"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:id="@+id/signup_txt"
-        />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/log_in_text"
+                android:background="@drawable/edtdesign"
+                android:textColor="@android:color/white"
+                android:id="@+id/login_btn"
+                android:textAppearance="?android:textAppearanceMedium"
+                />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/don_t_have_account"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:padding="7dp"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:id="@+id/signup_txt"
+                />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:tooltipText="Processing..."
+                android:visibility="gone">
+            </ProgressBar>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
