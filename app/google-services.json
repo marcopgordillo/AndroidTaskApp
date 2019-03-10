@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1090199957578",
+    "firebase_url": "https://your-task-app-81165.firebaseio.com",
+    "project_id": "your-task-app-81165",
+    "storage_bucket": "your-task-app-81165.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090199957578:android:d0106c71b2eafda7",
+        "android_client_info": {
+          "package_name": "com.example.yourtaskapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090199957578-02a5hgdhu6chna91m1eh9lsr91rjml6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQsmugoLLxCM5UyadGrSgoTTmi5--mPSU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
