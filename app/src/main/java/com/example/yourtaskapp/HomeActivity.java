@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.DateFormat;
 import java.util.Date;
 
 public class HomeActivity extends AppCompatActivity {
@@ -83,13 +82,10 @@ public class HomeActivity extends AppCompatActivity {
                             return;
                         }
 
-                        String id = mDatabase.push().getKey();
-                        String date = DateFormat.getDateInstance().format(new Date());
-                        Task newTask = new Task(id, mTitle, mNote, date);
+                        Date date = new Date();
+                        Task newTask = new Task(mTitle, mNote, date);
 
-                        if (id != null) {
-                            mDatabase.child(id).setValue(newTask);
-                        }
+                        mDatabase.push().setValue(newTask);
 
                         Toast.makeText(getApplicationContext(), "Task insert", Toast.LENGTH_SHORT).show();
 

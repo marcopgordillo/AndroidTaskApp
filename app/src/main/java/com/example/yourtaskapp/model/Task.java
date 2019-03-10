@@ -1,28 +1,20 @@
 package com.example.yourtaskapp.model;
 
+import java.util.Date;
+
 public class Task {
 
-    private String id;
     private String title;
     private String note;
-    private String date;
+    private Date date;
 
     public Task() {
     }
 
-    public Task(String id, String title, String note, String date) {
-        this.id = id;
+    public Task(String title, String note, Date date) {
         this.title = title;
         this.note = note;
         this.date = date;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -41,11 +33,11 @@ public class Task {
         this.note = note;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }
