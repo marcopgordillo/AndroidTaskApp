@@ -235,6 +235,15 @@ public class HomeActivity extends AppCompatActivity {
         btnUpdateUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                title = titleUp.getText().toString().trim();
+                note = noteUp.getText().toString().trim();
+
+                Date date = new Date();
+
+                Task updatedTask = new Task(title, note, date);
+
+                mDatabase.child(postKey).setValue(updatedTask);
+
                 dialog.dismiss();
             }
         });
@@ -242,6 +251,9 @@ public class HomeActivity extends AppCompatActivity {
         btnDeleteUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                mDatabase.child(postKey).removeValue();
+
                 dialog.dismiss();
             }
         });
