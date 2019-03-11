@@ -1,5 +1,6 @@
 package com.example.yourtaskapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,36 +17,39 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity {
 
-    private TextView signup;
     private EditText email;
     private EditText pass;
-    private Button btnLogin;
+    private Button btnReg;
+    private TextView loginTxt;
 
     private FirebaseAuth mAuth;
 
-    private ProgressBar mProgress;
+    private ProgressDialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_registration);
 
         mAuth = FirebaseAuth.getInstance();
 
-        if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-        }
+        mDialog = new ProgressDialog(this);
 
-        mProgress = findViewById(R.id.progressBar);
+        email = findViewById(R.id.email_reg);
+        pass = findViewById(R.id.password_reg);
+        btnReg = findViewById(R.id.reg_btn);
+        loginTxt = findViewById(R.id.login_txt);
 
-        signup = findViewById(R.id.signup_txt);
-        email = findViewById(R.id.email_login);
-        pass = findViewById(R.id.password_login);
-        btnLogin = findViewById(R.id.login_btn);
+        loginTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String mEmail = email.getText().toString().trim();
@@ -62,29 +65,21 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                mProgress.setIndeterminate(true);
-                mProgress.setVisibility(View.VISIBLE);
+                mDialog.setMessage("Processing...");
+                mDialog.show();
 
-                mAuth.signInWithEmailAndPassword(mEmail, mPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                mAuth.createUserWithEmailAndPassword(mEmail, mPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         } else {
                             Toast.makeText(getApplicationContext(), "Problem", Toast.LENGTH_LONG).show();
                         }
-
-                        mProgress.setVisibility(View.GONE);
+                        mDialog.dismiss();
                     }
                 });
-            }
-        });
-
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegistrationActivity.class));
             }
         });
     }

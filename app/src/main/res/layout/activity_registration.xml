@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/backdesign"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".RegistrationActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/log_in_text"
+                android:text="@string/registration_text"
                 android:textColor="@android:color/white"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:layout_gravity="center"
@@ -33,7 +33,7 @@
                 android:background="@drawable/edtdesign"
                 android:padding="10dp"
                 android:textColorHint="@android:color/white"
-                android:id="@+id/email_login"
+                android:id="@+id/email_reg"
                 />
 
             <EditText
@@ -45,40 +45,30 @@
                 android:padding="10dp"
                 android:textColorHint="@android:color/white"
                 android:inputType="textPassword"
-                android:id="@+id/password_login"
+                android:id="@+id/password_reg"
                 />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@string/log_in_text"
+                android:text="@string/registration_text"
                 android:background="@drawable/edtdesign"
                 android:textColor="@android:color/white"
-                android:id="@+id/login_btn"
+                android:id="@+id/reg_btn"
                 android:textAppearance="?android:textAppearanceMedium"
                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/don_t_have_account"
+                android:text="@string/already_have_account"
                 android:textColor="@android:color/white"
                 android:gravity="center"
                 android:padding="7dp"
                 android:textAppearance="?android:textAppearanceSmall"
-                android:id="@+id/signup_txt"
+                android:id="@+id/login_txt"
                 />
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:tooltipText="Processing..."
-                android:visibility="gone">
-            </ProgressBar>
         </LinearLayout>
     </ScrollView>
 
