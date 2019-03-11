@@ -42,6 +42,17 @@ public class HomeActivity extends AppCompatActivity {
     // Recycler
     private RecyclerView recyclerView;
 
+    // Update
+    private EditText titleUp;
+    private EditText noteUp;
+    private Button btnDeleteUp;
+    private Button btnUpdateUp;
+
+    // Variable
+    private String title;
+    private String note;
+    private String postKey;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,7 +147,7 @@ public class HomeActivity extends AppCompatActivity {
                 mDatabase
         ) {
             @Override
-            protected void populateViewHolder(MyViewHolder viewHolder, Task model, int position) {
+            protected void populateViewHolder(MyViewHolder viewHolder, final Task model, final int position) {
                 viewHolder.setTitle(model.getTitle());
                 viewHolder.setNote(model.getNote());
                 viewHolder.setDate(model.getDate());
@@ -144,6 +155,11 @@ public class HomeActivity extends AppCompatActivity {
                 viewHolder.myView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        postKey = getRef(position).getKey();
+                        title = model.getTitle();
+                        note = model.getNote();
+
                         updateTask();
                     }
                 });
@@ -202,7 +218,33 @@ public class HomeActivity extends AppCompatActivity {
         View myView = inflater.inflate(R.layout.update_input_field, null);
         myDialog.setView(myView);
 
-        AlertDialog dialog = myDialog.create();
+        final AlertDialog dialog = myDialog.create();
+
+        titleUp = myView.findViewById(R.id.edt_title_upd);
+        noteUp = myView.findViewById(R.id.edt_note_upd);
+
+        titleUp.setText(title);
+        titleUp.setSelection(title.length());
+
+        noteUp.setText(note);
+        noteUp.setSelection(note.length());
+
+        btnDeleteUp = myView.findViewById(R.id.btn_delete);
+        btnUpdateUp = myView.findViewById(R.id.btn_update);
+
+        btnUpdateUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        btnDeleteUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
 
         dialog.show();
 
