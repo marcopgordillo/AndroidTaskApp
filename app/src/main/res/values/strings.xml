@@ -10,4 +10,6 @@
     <string name="note_custom_input_field">Note:</string>
     <string name="save">SAVE</string>
     <string name="add_your_task">Add your daily task</string>
+    <string name="delete">DELETE</string>
+    <string name="update">UPDATE</string>
 </resources>
