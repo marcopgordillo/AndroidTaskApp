@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1090199957578-kbppst41j9uprfbv5dir1mc8lejhi335.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yourtaskapp",
+            "certificate_hash": "1a62a002adef86447f6300fc5b80605d7b70dd8b"
+          }
+        },
+        {
           "client_id": "1090199957578-02a5hgdhu6chna91m1eh9lsr91rjml6s.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090199957578-02a5hgdhu6chna91m1eh9lsr91rjml6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
