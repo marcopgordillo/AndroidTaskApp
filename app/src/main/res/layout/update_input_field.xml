@@ -16,7 +16,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:text="@string/add_your_task"
+                android:text="@string/update_your_task"
                 android:gravity="center"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:background="@drawable/backdesign"
