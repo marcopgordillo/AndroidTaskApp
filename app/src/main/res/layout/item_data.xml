@@ -15,12 +15,12 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="match_parent"
                 android:text="9 September"
-                android:padding="7dp"
+                android:padding="10dp"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textColor="@color/colorTint"
                 android:id="@+id/date"
@@ -29,14 +29,13 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content">
+            android:layout_weight="3"
+            android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="match_parent"
                 android:text="Title"
                 android:maxLines="1"
-                android:padding="5dp"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textColor="@android:color/black"
                 android:id="@+id/title"

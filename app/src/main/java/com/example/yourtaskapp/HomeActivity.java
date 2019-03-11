@@ -1,6 +1,7 @@
 package com.example.yourtaskapp;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,15 +13,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yourtaskapp.model.Task;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -63,7 +68,10 @@ public class HomeActivity extends AppCompatActivity {
 
         String userId = mUser != null ? mUser.getUid() : null;
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("TaskNote").child(userId);
+        if (userId != null) {
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("TaskNote").child(userId);
+            mDatabase.keepSynced(true);
+        }
 
         fabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,5 +120,51 @@ public class HomeActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseRecyclerAdapter<Task, MyViewHolder> adapter = new FirebaseRecyclerAdapter<Task, MyViewHolder>(
+                Task.class,
+                R.layout.item_data,
+                MyViewHolder.class,
+                mDatabase
+        ) {
+            @Override
+            protected void populateViewHolder(MyViewHolder viewHolder, Task model, int position) {
+                viewHolder.setTitle(model.getTitle());
+                viewHolder.setNote(model.getNote());
+                viewHolder.setDate(model.getDate());
+            }
+        };
+
+        recyclerView.setAdapter(adapter);
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+
+        View myView;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            myView = itemView;
+        }
+
+        public void setTitle(String title) {
+            TextView mTitle = myView.findViewById(R.id.title);
+            mTitle.setText(title);
+        }
+
+        public void setNote(String note) {
+            TextView mNote = myView.findViewById(R.id.note);
+            mNote.setText(note);
+        }
+
+        public void setDate(Date date) {
+            TextView mDate = myView.findViewById(R.id.date);
+            mDate.setText(new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(date));
+        }
     }
 }
